@@ -23,7 +23,7 @@ test("booking free", () => {
   });
   const booking2 = new Booking({
     name: "Andres",
-    email: "hola2@hola2.com",
+    email: "chao@chao.com",
     checkIn: "2022-08-10",
     checkOut: "2022-08-15",
     discount: 10,
@@ -46,7 +46,7 @@ test("booking occupied and return the guest name", () => {
   });
   const booking2 = new Booking({
     name: "Andres",
-    email: "hola2@hola2.com",
+    email: "chao@chao.com",
     checkIn: "2022-08-10",
     checkOut: "2022-08-15",
     discount: 0,
@@ -69,7 +69,7 @@ test("return occupied percentage", () => {
   });
   const booking2 = new Booking({
     name: "Andres",
-    email: "hola2@hola2.com",
+    email: "chao@chao.com",
     checkIn: "2022-08-10",
     checkOut: "2022-08-15",
     discount: 0,
@@ -113,7 +113,7 @@ test("return the total occupancy percentage", () => {
   });
   const booking2 = new Booking({
     name: "Andres",
-    email: "hola2@hola2.com",
+    email: "chao@chao.com",
     checkIn: "2022-08-10",
     checkOut: "2022-08-15",
     discount: 20,
@@ -153,7 +153,7 @@ test("return all the available rooms", () => {
   });
   const booking2 = new Booking({
     name: "Andres",
-    email: "hola2@hola2.com",
+    email: "chao@chao.com",
     checkIn: "2022-08-10",
     checkOut: "2022-08-15",
     discount: 0,
