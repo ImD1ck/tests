@@ -30,12 +30,11 @@ export class Room implements RoomData {
   isOccupied(date: string) : boolean|string {
     const bookings = this.bookings;
     if (this.bookings.length) {
-      // if the date matches a date's reservation
       for (let i = 0; i < bookings.length; i++) {
         if (date >= bookings[i].checkIn && date <= bookings[i].checkOut)
-          return bookings[i].name; // return the guest's name
+          return bookings[i].name; 
       }
-      return false; // otherwise, return false
+      return false; 
     }
     return false;
   }
@@ -49,7 +48,7 @@ export class Room implements RoomData {
   }): number {
     const bookings = this.bookings;
 
-    let reservedBookings = []; // array for the reserved bookings
+    let reservedBookings = []; 
 
     for (let i = 0; i < bookings.length; i++) {
       if (startDate >= bookings[i].checkIn && endDate <= bookings[i].checkOut) {
@@ -57,7 +56,7 @@ export class Room implements RoomData {
       }
     }
 
-    return Math.round((reservedBookings.length / bookings.length) * 100); // and return the rounded percentage
+    return Math.round((reservedBookings.length / bookings.length) * 100); 
   }
 }
 
@@ -115,17 +114,16 @@ export const availableRooms = ({
   startDate: string;
   endDate: string;
 }) => {
-  const totalPercentage = 100; // the highest value of the % is 100
+  const totalPercentage = 100;
 
   const occupancyRooms = totalOccupancyPercentage({
     rooms: rooms,
     startDate: startDate,
     endDate: endDate,
-  }); // total % of occupied rooms
-  const occupancyRoomsInDecimal = Math.round(occupancyRooms / 100); // total % of occupied rooms to decimal
-
+  }); 
+  const occupancyRoomsInDecimal = Math.round(occupancyRooms / 100);
   const totalPercentageOfAvailableRooms =
-    Math.round(totalPercentage - occupancyRoomsInDecimal) * 100; // calculate the % of the available rooms
+    Math.round(totalPercentage - occupancyRoomsInDecimal) * 100; 
 
   return totalPercentageOfAvailableRooms;
 };
