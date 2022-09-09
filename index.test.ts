@@ -16,8 +16,8 @@ const roomTemplateExample: RoomData = {
 };
 
 const bookingTemplateExample: BookingData = {
-  name: "Belén Jaraba",
-  email: "test@jest.com",
+  name: "Andres",
+  email: "chao@chao.com",
   checkIn: new Date("20 May 2022 14:00 UTC").toISOString(),
   checkOut: new Date("25 May 2022 14:00 UTC").toISOString(),
   discount: 0,
@@ -56,7 +56,7 @@ describe("Room: isOccuped()", () => {
     room.bookings.push(booking1);
     expect(
       room.isOccupied(new Date("25 May 2022 14:00 UTC").toISOString())
-    ).toBe("Belén Jaraba");
+    ).toBe("Andres");
   });
 });
 
@@ -113,8 +113,8 @@ describe("Booking: getFee()", () => {
   test("If there is not any discount: ", () => {
     const room = new Room({ ...roomTemplateExample });
     const booking = new Booking({
-      name: "Lorena Pérez",
-      email: "test2@jest.com",
+      name: "Andres",
+      email: "chao@chao.com",
       checkIn: new Date("4 Sep 2022 14:00 UTC").toDateString(),
       checkOut: new Date("24 Sep 2022 14:00 UTC").toISOString(),
       discount: 0,
@@ -129,7 +129,7 @@ describe("Booking: getFee()", () => {
       ...bookingTemplateExample,
       room: new Room({ ...roomTemplateExample, discount: 15 }),
     });
-    expect(booking.getFee()).toBe(425); /* 500 * 0.15 = 75 | 500 - 75 = 425 */
+    expect(booking.getFee()).toBe(425);
   });
 
   test("If there is discount (rooms: 50%) return the percentage: ", () => {
@@ -137,7 +137,7 @@ describe("Booking: getFee()", () => {
       ...bookingTemplateExample,
       room: new Room({ ...roomTemplateExample, discount: 50 }),
     });
-    expect(booking.getFee()).toBe(250); /* 500 * 0.50 = 250 | 500 - 250 = 250 */
+    expect(booking.getFee()).toBe(250); 
   });
 
   test("If there is discount (booking: 25%) return the percentage: ", () => {
@@ -145,7 +145,7 @@ describe("Booking: getFee()", () => {
       ...bookingTemplateExample,
       discount: 25,
     });
-    expect(booking.getFee()).toBe(375); /* 500 * 0.25 = 125 | 500 - 125 = 375 */
+    expect(booking.getFee()).toBe(375);
   });
 
   test("If there is discount (booking: 70%) return the percentage: ", () => {
@@ -153,7 +153,7 @@ describe("Booking: getFee()", () => {
       ...bookingTemplateExample,
       discount: 50,
     });
-    expect(booking.getFee()).toBe(250); /* 500 * 0.70 = 350 | 500 - 350 = 150 */
+    expect(booking.getFee()).toBe(250); 
   });
 });
 
@@ -182,16 +182,7 @@ describe("Room and Booking: totalOccupancyPercentage()", () => {
   ];
 
   test(" If there are reservations, it returns the percentage of the rooms occupied", () => {
-    /* 
-          Bookings for Suite: 4
-          Bookings for Double Suite: 4 
-          Total reservations: 8
-          Limit of Bookings: 100
-  
-          ( 8 / 100) * 100 = 8
-  
-          Total percentage expected: 8%
-      */
+
     const rooms = [
       new Room({ ...roomTemplateExample, bookings: bookings }),
       new Room({
@@ -211,14 +202,6 @@ describe("Room and Booking: totalOccupancyPercentage()", () => {
   });
 
   test(" If it is fully booked, it returns 100%", () => {
-    /* 
-          Bookings for Suite: 8
-          Bookings for Double Suite: 8 
-          Total: 16
-          Limit of bookings: 16
-  
-          Total percentage expected: 100%
-         */
 
     const bookings2 = [
       {
@@ -307,14 +290,7 @@ describe("Room and Booking: availableRooms()", () => {
   ];
 
   test("Return the availables rooms ", () => {
-    /* 
-          Bookings for Suite: 4
-          Bookings for Double Suite: 4
-          Total reservations: 8
-          Limit of Bookings: 100
-  
-          Total percentage expected: 8% => 0.08 percentage in decimal
-      */
+
     const rooms = [
       new Room({ ...roomTemplateExample, bookings: bookings }),
       new Room({
@@ -324,8 +300,8 @@ describe("Room and Booking: availableRooms()", () => {
       }),
     ];
 
-    //(100 - 0.08) / 100 = 0.992 => rounded: 1% => 0.1 percentage of occupied rooms
-    const totalAvailablesRooms = 99; //(100 - 0.1) * 100 => 99% available rooms
+
+    const totalAvailablesRooms = 99; 
 
     expect(
       availableRooms({
@@ -337,14 +313,6 @@ describe("Room and Booking: availableRooms()", () => {
   });
 
   test("If there aren't availables rooms, return false ", () => {
-    /* 
-          Bookings for Suite: 4 
-          Bookings for Double Suite: 4
-          Total reservations: 8
-  
-          Limit of Bookings: 100
-  
-      */
     const rooms = [
       new Room({ ...roomTemplateExample, bookings: bookings }),
       new Room({
